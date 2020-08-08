@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>COMP3010 Grade Release System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="index.html">Release Grade</a>
+          </li>
+          <li>
+            <a href="check_grade.html">Check Grade</a>
+          </li>
+        </ul>
+        <h1 class="text-center">
+          COMP3010 Grade Release System
+        </h1>
+        <h2 class="text-center">
+          Only Professor can annouce information,students can search their grade
+        </h2>
+        <ul class="list-inline">
+          <li>
+            <p id="accountName" class="text-center"></p>
+          </li>
+          <li>
+            <p id="accountBalance" class="text-center"></p>
+          </li>
+          <li>
+            <p id="accountAddress" class="text-center"></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <h3>
+          Enter Student's Score here
+        </h3>
+
+        <form onSubmit="App.createStudent();" role="form">
+          <div class="form-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" style="width:200px; height:40px;" class="form-control" id="studentName" placeholder="Student Name">
+            <br>
+
+            <label for="studentNumber">Student Number</label>
+            <input type="text"  style="width:600px; height:40px;" class="form-control" id="studentNumber" placeholder="Student Number">
+            <br>
+
+            <label for="assignemntScore">Assignment Score</label>
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="assignemntScore" placeholder="Assignment Score">
+
+            <br>
+            <label for="projectScore">Project Score</label>
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="projectScore" placeholder="Project Score">
+
+            <br>
+            <label for="examScore">Exam Score</label>
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="examScore" placeholder="Exam Score">
+            <br>
+
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+  <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <ul class="nav nav-tabs">
+            <li>
+              <a href="index.html">Release Grade</a>
+            </li>
+            <li class="active">
+              <a href="check_grade.html">Check Grade</a>
+            </li>
+          </ul>
+          <h1 class="text-center">
+            COMP3010 Grade Release System
+          </h1>
+          <h2 class="text-center">
+            Only Professor can annouce information,students can search their grade
+          </h2>
+          <ul class="list-inline">
+            <li>
+              <p id="accountName" class="text-center"></p>
+            </li>
+            <li>
+              <p id="accountBalance" class="text-center"></p>
+            </li>
+            <li>
+              <p id="accountAddress" class="text-center"></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <h3>
+          Search your score here
+        </h3>
+        <form onSubmit="App.queryS();">
+          <div class="form-group">
+            <label for="qID">student number</label>
+            <input type="text"  style="width:600px; height:40px;" class="form-control" id="qID" placeholder="student number">
+            <br>
+          </div>
+          <button type="submit" class="btn btn-primary">Check</button>
+          <hr />
+        </form>
+
+        <h3 class="text">Grade Search Result</h3>
+        <h4 class="text">The latest grade count</h4>
+        <table class="table table-hover table-bordered">
+          <tbody id="graderesult">
+            <thead>
+              <tr>
+                <th>
+                  student name
+                </th>
+                <th>
+                  Professor address
+                </th>
+                <th>
+                  student number
+                </th>
+                <th>
+                  create time
+                </th>
+                <th>
+                  assignment score
+                </th>
+                <th>
+                  project score
+                </th>
+                <th>
+                  exam score
+                </th>
+                <th>
+                  final grade
+                </th>
+              </tr>
+            </thead>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+    <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+    <script src="app.js"></script>
+  </body>
+  </html>
