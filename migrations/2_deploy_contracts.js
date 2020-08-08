@@ -1,5 +1,5 @@
-var Grade = artifacts.require("./Grade.sol");
+var Aurora2 = artifacts.require("./Aurora2.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Grade);
+  deployer.deploy(Aurora2);
 };

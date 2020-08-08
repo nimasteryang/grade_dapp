@@ -44,6 +44,10 @@
 
         <form onSubmit="App.createStudent();" role="form">
           <div class="form-group">
+            <label for="courseCode">Course Code</label>
+            <input type="text" style="width:200px; height:40px;" class="form-control" id="courseCode" placeholder="Course Code:COMP3010...">
+            <br>
+
             <label for="studentName">Student Name</label>
             <input type="text" style="width:200px; height:40px;" class="form-control" id="studentName" placeholder="Student Name">
             <br>
@@ -53,15 +57,15 @@
             <br>
 
             <label for="assignemntScore">Assignment Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="assignemntScore" placeholder="Assignment Score">
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="assignemntScore" placeholder="Assignment Score max:100">
 
             <br>
             <label for="projectScore">Project Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="projectScore" placeholder="Project Score">
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="projectScore" placeholder="Project Score max:100">
 
             <br>
             <label for="examScore">Exam Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="examScore" placeholder="Exam Score">
+            <input type="text" style="width:200px; height:40px;"  class="form-control" id="examScore" placeholder="Exam Score max:100">
             <br>
 
           </div>
