@@ -8,6 +8,7 @@ This Dapp is a partial implementation of the AURORA2 student management system p
 1. Environment Requirement 
 	1. [Node.js](https://nodejs.org/en/)
 	2. npm ( **npm is installed with Node.js**)
+	3. truffle (install via npm)
 	3. [Ganache](https://www.trufflesuite.com/ganache) ( personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.)
 	4. [MetaMask](https://metamask.io/download.html) Chrome extension (A crypto wallet & gateway to blockchain apps.)
 2. Install package
