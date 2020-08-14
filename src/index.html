@@ -51,21 +51,49 @@
             <label for="studentName">Student Name</label>
             <input type="text" style="width:200px; height:40px;" class="form-control" id="studentName" placeholder="Student Name">
             <br>
-
+            
             <label for="studentNumber">Student Number</label>
             <input type="text"  style="width:600px; height:40px;" class="form-control" id="studentNumber" placeholder="Student Number">
             <br>
 
-            <label for="assignemntScore">Assignment Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="assignemntScore" placeholder="Assignment Score max:100">
-
+            <div class="container">
+              <div class="row clearfix">
+                <div class="col-md-3 column">
+                  <label for="assignmentScore">Assignment Score</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="assignmentScore" placeholder="Score max:100">      
+                </div>
+                <div class="col-md-3 column">
+                  <label for="assignmentPrecentage">Assignment Precentage</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="assignmentPrecentage" placeholder="precentage eg:35">      
+                </div>
+              </div>
+            </div>
             <br>
-            <label for="projectScore">Project Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="projectScore" placeholder="Project Score max:100">
-
-            <br>
-            <label for="examScore">Exam Score</label>
-            <input type="text" style="width:200px; height:40px;"  class="form-control" id="examScore" placeholder="Exam Score max:100">
+            <div class="container">
+              <div class="row clearfix">
+                <div class="col-md-3 column">
+                  <label for="projectScore">Project Score</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="projectScore" placeholder="Score max:100">
+                </div>
+                <div class="col-md-3 column">
+                  <label for="projectPrecentage">Project Precentage</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="projectPrecentage" placeholder="precentage eg:25">
+                </div>
+              </div>
+            </div>
+           <br>
+            <div class="container">
+              <div class="row clearfix">
+                <div class="col-md-3 column">
+                  <label for="examScore">Exam Score</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="examScore" placeholder="Score max:100"> 
+                </div>
+                <div class="col-md-3 column">
+                  <label for="examPrecentage">Exam Precentage</label>
+                  <input type="number" style="width:200px; height:40px;" max="100" min="0" class="form-control" id="examPrecentage" placeholder="precentage eg:40"> 
+                </div>
+              </div>
+            </div>
             <br>
 
           </div>

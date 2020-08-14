@@ -12,9 +12,9 @@ contract Aurora2{
         string student_name;
         uint release_time;
         string student_number;
-        uint assignment_score;
-        uint project_score;
-        uint exam_score;
+        uint assignment_grade;
+        uint project_grade;
+        uint exam_grade;
         string _final_grade;
     }
 
@@ -25,27 +25,28 @@ contract Aurora2{
         string stdent_name,
         uint release_time,
         string student_number,
-        uint assignment_score,
-        uint project_score,
-        uint exam_score,
+        uint assignment_grade,
+        uint project_grade,    
+        uint exam_grade,
         string _final_grade
     );
     //administrator,which should be professor, or other grader
     constructor () public {
         administrator = msg.sender;
-        createGrade("comp3010","PRO","7777777",100,100,100);
+        createGrade("comp3010","PRO","7777777",100,35,100,35,100,40);
     }
 
-    function createGrade(string memory _course_id,string memory _student_name,string memory _student_number,uint _assignment_score,uint _project_score,uint _exam_score) public {
+    function createGrade(string memory _course_id,string memory _student_name,string memory _student_number,uint _assignment_score,uint _assignment_precentage,uint _project_score,uint _project_precentage,uint _exam_score,uint _exam_precentage) public {
         //check if current user is administrator
         require(administrator == msg.sender);
         //increase id
         gradeCount++;
         address _professor_addr = msg.sender;
-
-        uint _final_score = _assignment_score * 2/5 + _project_score * 1/4 + _exam_score * 7/20;
+        uint _final_score = (_assignment_score * _assignment_precentage + _project_score * _project_precentage + _exam_score * _exam_precentage) / 100;
         string memory _final_grade;
-        if(_final_score >= 90){
+        if( _assignment_score < 50 || _project_score < 50 || _exam_score < 50 ){
+            _final_grade = "F";
+        }else if(_final_score >= 90){
             _final_grade = "A+";
         }else if(_final_score >= 80){
             _final_grade = "A";

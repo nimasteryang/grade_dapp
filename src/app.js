@@ -165,20 +165,29 @@ App = {
             var courseCode= $('#courseCode').val().toUpperCase().trim();
             var studentName= $('#studentName').val();
             var studentNumber= $('#studentNumber').val();
-            var assignemntScore= $('#assignemntScore').val();
+            var assignmentScore= $('#assignmentScore').val();
+            var assignmentPrecentage = $('#assignmentPrecentage').val();
             var projectScore= $('#projectScore').val();
+            var projectPrecentage= $('#projectPrecentage').val();
             var examScore= $('#examScore').val();
+            var examPrecentage= $('#examPrecentage').val();
+            console.log(assignmentScore,assignmentPrecentage,projectScore,projectPrecentage,examScore,examPrecentage);
             var userAccount = web3.eth.accounts[0];
+            var precentageSum = + Number (assignmentPrecentage) + Number (projectPrecentage) + Number (examPrecentage);
+            console.log(precentageSum)
+            if(precentageSum > 100){
+                window.alert("Sum of Precentage exceed 100");
+            }
             App.contracts.Aurora2.deployed().then(function(instance) {
-                return instance.createGrade(courseCode,studentName,studentNumber,assignemntScore,projectScore,examScore,{gas: 3000000, from: userAccount});
+                return instance.createGrade(courseCode,studentName,studentNumber,assignmentScore,assignmentPrecentage,projectScore,projectPrecentage,examScore,examPrecentage,{gas: 3000000, from: userAccount});
             }).then(function(result) {
-        // Wait for to update
-        console.log(accounts[0]);
-        }).catch(function(err) {
-            console.error(err);
-        });
-    },
-};
+            // Wait for to update
+            console.log(accounts[0]);
+            }).catch(function(err) {
+                console.error(err);
+            });
+        },
+    };
 $(function() {
     $(window).on('load',(function() {
         App.init();
