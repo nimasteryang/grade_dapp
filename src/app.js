@@ -79,9 +79,9 @@ App = {
                 App.account = account;
                 $("#accountAddress").html("current account address: " + account);
                 if(App.admin == account){
-                    $("#accountName").html("current login: administrator " );
+                    $("#accountName").html("current login: administrator/professor " );
                 }else{
-                    $("#accountName").html("current login: poort student " );
+                    $("#accountName").html("current login: poor student " );
                 }
 
                 web3.eth.getBalance( account,function(err,res){
