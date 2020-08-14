@@ -11,7 +11,8 @@ This Dapp is a partial implementation of the AURORA2 student management system p
 	3. [Ganache](https://www.trufflesuite.com/ganache) ( personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.)
 	4. [MetaMask](https://metamask.io/download.html) Chrome extension (A crypto wallet & gateway to blockchain apps.)
 2. Install package
-	* In the terminal of the project directoty , run  `npm install`
+	* In the terminal of the project directoty , run  `sudo npm install -g truffle`
+	* Then , run  `sudo npm install`
 3. Open Ganache, click QUICKSTART
 	* Make sure the Ganache’s RPC server address is HTTP://127.0.0.1:8545
 4. build the  project
