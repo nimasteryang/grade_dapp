@@ -44,8 +44,11 @@
         </h3>
         <form onSubmit="App.queryS();">
           <div class="form-group">
-            <label for="qID">student number</label>
-            <input type="text"  style="width:600px; height:40px;" class="form-control" id="qID" placeholder="student number">
+            <label for="requestCourseCode">course code</label>
+            <input type="text"  style="width:300px; height:40px;" class="form-control" id="requestCourseCode" placeholder="course code">
+            <br>
+            <label for="requestStudentNumber">student number</label>
+            <input type="text"  style="width:300px; height:40px;" class="form-control" id="requestStudentNumber" placeholder="student number">
             <br>
           </div>
           <button type="submit" class="btn btn-primary">Check</button>
@@ -60,6 +63,9 @@
               <tr>
                 <th>
                   student name
+                </th>
+                <th>
+                  course code
                 </th>
                 <th>
                   Professor address

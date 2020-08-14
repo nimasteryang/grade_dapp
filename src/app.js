@@ -31,12 +31,11 @@ App = {
 
     initContract: function() {
         console.log("init contract");
-        $.getJSON("Grade.json", function(grade) {
+        $.getJSON("Aurora2.json", function(aurora2) {
             // init contract
-            App.contracts.Grade = TruffleContract(grade);
+            App.contracts.Aurora2 = TruffleContract(aurora2);
             // interact with contract
-            App.contracts.Grade.setProvider(App.web3Provider);
-            console.log("init success");
+            App.contracts.Aurora2.setProvider(App.web3Provider);
             App.listenForEvents();
             App.getAdmin();
             return App.render();
@@ -46,8 +45,8 @@ App = {
     // listen to contract event
     listenForEvents: function() {
         console.log("listen event")
-        App.contracts.Grade.deployed().then(function(instance) {
-            instance.StudentCreated({}, {
+        App.contracts.Aurora2.deployed().then(function(instance) {
+            instance.GradeCreated({}, {
                 fromBlock: 0,
                 toBlock: 'latest'
             }).watch(function(error, event) {
@@ -56,13 +55,13 @@ App = {
 
         });
     },
-    
+
     //get administrator's address
     getAdmin: function(){
         console.log("get admin")
-        App.contracts.Grade.deployed().then(function(instance) {
-            gradeInstance = instance;
-            return gradeInstance.administrator();
+        App.contracts.Aurora2.deployed().then(function(instance) {
+            aurora2Instance = instance;
+            return aurora2Instance.administrator();
         }).then(function(administrator){
             var addr = administrator;
             console.log(addr);
@@ -78,57 +77,67 @@ App = {
             console.log("get accout info")
             if (err === null) {
                 App.account = account;
-                $("#accountAddress").html("current accnout address: " + account);   
+                $("#accountAddress").html("current account address: " + account);
                 if(App.admin == account){
-                    $("#accountName").html("current login: administrator " );   
+                    $("#accountName").html("current login: administrator " );
                 }else{
-                    $("#accountName").html("current login: poort student " );  
+                    $("#accountName").html("current login: poort student " );
                 }
 
                 web3.eth.getBalance( account,function(err,res){
                     if(!err) {
                         console.log(res);
-                        $("#accountBalance").html("current Account balance: " +res+'wei');   
+                        $("#accountBalance").html("current Account balance: " +res+'wei');
                     }else{
                         console.log(err);
                     }
                 });
-            }     
+            }
         })
     },
 
     render: function() {
     // Load contract data
-        App.contracts.Grade.deployed().then(function(instance) {
+        App.contracts.Aurora2.deployed().then(function(instance) {
             console.log("load contract data")
-            gradeInstance = instance;
-            return gradeInstance.studentCount();
-        }).then(function(studentCount) {
-            var Graderesult = $("#graderesult");
-            Graderesult.empty();
-            for (var i = 1; i <= studentCount; i++) {
-                gradeInstance.students(i).then(function(record) {
+            aurora2Instance = instance;
+            return aurora2Instance.gradeCount();
+        }).then(function(gradeCount) {
+            var graderesult = $("#graderesult");
+            graderesult.empty();
+            for (var i = 1; i <= gradeCount; i++) {
+                aurora2Instance.grades(i).then(function(record) {
                     var id = record[0];
                     var professorAddress = record[1];
-                    var studentName = record[2];
-                    var createTime = record[3];            
-                    var studentNumber = record[4];
-                    var assignmentScore = record[5];
-                    var projectScore = record[6];
-                    var examScore = record[7];
-                    var finalGrade = record[8]
-                    var recordTemplate = "<tr><td width=140px>" + studentName + 
-                    "</font></td><td>"+ professorAddress + 
-                    "</td><td width=300px>" + studentNumber + 
-                    "</td><td width=70px>"+ createTime + 
-                    "</td><td width=70px>" + assignmentScore + 
-                    "</td><td width=70px>"+ projectScore + 
-                    "</td><td width=70px>"+ examScore + 
-                    "</td><td width=70px>"+ finalGrade + 
+                    var courseCode = record[2];
+                    var studentName = record[3];
+                    var createTime = record[4];
+                    var studentNumber = record[5];
+                    var assignmentScore = record[6];
+                    var projectScore = record[7];
+                    var examScore = record[8];
+                    var finalAurora2 = record[9];
+                    var recordTemplate = "<tr><td width=140px>" + studentName +
+                    "</td><td width=300px>" + courseCode +
+                    "</font></td><td>"+ professorAddress +
+                    "</td><td width=300px>" + studentNumber +
+                    "</td><td width=70px>"+ createTime +
+                    "</td><td width=70px>" + assignmentScore +
+                    "</td><td width=70px>"+ projectScore +
+                    "</td><td width=70px>"+ examScore +
+                    "</td><td width=70px>"+ finalAurora2 +
                     "</td></tr>"
-                    var qID=document.cookie.split(";")[0].split("=")[1]; 
-                    if(studentNumber==qID){
-                        Graderesult.append(recordTemplate);
+                    //parse request student number from cookie
+                    var request_student_number=document.cookie.split(";")[0].split("=")[1];
+                    var request_course_code=document.cookie.split(";")[1].split("=")[1];
+                    if(request_course_code == ""){
+                      if(studentNumber==request_student_number){
+                          graderesult.append(recordTemplate);
+                      }
+                    }else{
+                      if(studentNumber==request_student_number && courseCode == request_course_code){
+                          graderesult.append(recordTemplate);
+                      }
                     }
                 });
             }
@@ -139,31 +148,48 @@ App = {
         },
 
         queryS: function() {
-            console.log("get query student number")
-            qID= $('#qID').val();
-            document.cookie="qID="+qID; 
+            console.log("get query student number and course code");
+            requestStudentNumber= $('#requestStudentNumber').val();
+            if(requestStudentNumber == ""){
+              alert("student number can not be empty");
+            }else{
+              //set student number to cookie
+              document.cookie="request_student_number="+requestStudentNumber;
+
+              requestCourseCode = $('#requestCourseCode').val();
+              document.cookie="request_course_code="+requestCourseCode;
+            }
         },
         createStudent: function() {
-            console.log("create a student")
+            console.log("create a grade");
+            var courseCode= $('#courseCode').val().toUpperCase().trim();
             var studentName= $('#studentName').val();
             var studentNumber= $('#studentNumber').val();
-            var assignemntScore= $('#assignemntScore').val();
+            var assignmentScore= $('#assignmentScore').val();
+            var assignmentPrecentage = $('#assignmentPrecentage').val();
             var projectScore= $('#projectScore').val();
+            var projectPrecentage= $('#projectPrecentage').val();
             var examScore= $('#examScore').val();
+            var examPrecentage= $('#examPrecentage').val();
+            console.log(assignmentScore,assignmentPrecentage,projectScore,projectPrecentage,examScore,examPrecentage);
             var userAccount = web3.eth.accounts[0];
-            App.contracts.Grade.deployed().then(function(instance) {
-                return instance.createStudent(studentName,studentNumber,assignemntScore,projectScore,examScore,{gas: 3000000, from: userAccount});
+            var precentageSum = + Number (assignmentPrecentage) + Number (projectPrecentage) + Number (examPrecentage);
+            console.log(precentageSum)
+            if(precentageSum > 100){
+                window.alert("Sum of Precentage exceed 100");
+            }
+            App.contracts.Aurora2.deployed().then(function(instance) {
+                return instance.createGrade(courseCode,studentName,studentNumber,assignmentScore,assignmentPrecentage,projectScore,projectPrecentage,examScore,examPrecentage,{gas: 3000000, from: userAccount});
             }).then(function(result) {
-        // Wait for to update
-        console.log(accounts[0]); 
-        }).catch(function(err) {
-            console.error(err);
-        });
-    },
-};
+            // Wait for to update
+            console.log(accounts[0]);
+            }).catch(function(err) {
+                console.error(err);
+            });
+        },
+    };
 $(function() {
     $(window).on('load',(function() {
         App.init();
     }));
 });
-
