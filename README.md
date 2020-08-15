@@ -16,6 +16,7 @@ This Dapp is a partial implementation of the AURORA2 student management system p
 	* Then , run  `sudo npm install`
 3. Open Ganache, click QUICKSTART
 	* Make sure the Ganache’s RPC server address is HTTP://127.0.0.1:8545
+	* If the server port is not 8545, it can be changed in the setting of Ganache
 4. build the  project
 	* In the terminal of the project directoty , run ` truffle migrate --reset`
 5. Start the server and open the front end website
