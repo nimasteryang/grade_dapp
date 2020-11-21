@@ -1,5 +1,5 @@
 # grade dapp 
-This project is part of the term project of COMP3010. 
+This project is part of the term project of COMP3010 Distributed Computing. 
 
 ## Description 
 This Dapp(distributed application) is a partial implementation of the AURORA2 student management system proposed in my paper. It makes use of smart contracts in Ethereum for information interaction and transaction processing. The smart contracts are written in the solidity language and the deployment of the smart contracts is implemented through truffle. Bootsramp and Javascript are used in the front-end webpages, and interaction with the blockchain is implemented via web3.js and metamask. The Ethereum block chain this system use is deployed and run locally by Canache.
